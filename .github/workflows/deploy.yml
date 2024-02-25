@@ -11,8 +11,6 @@ jobs:
   aws:
     if: true
     runs-on: ubuntu-latest
-    env:
-      NODE_ENV: github_actions
 
     steps:
       - name: branch checkout
@@ -36,6 +34,7 @@ jobs:
 
       - name: "sam build and deploy"
         run: |
+          echo "NODE_ENV=github_actions" >> GITHUB_ENV
           npm run package-deploy
           # NODE_ENV=github_actions npm run package-deploy
           # you can also set NODE_ENV with env directive above before running npm
