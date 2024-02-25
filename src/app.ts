@@ -3,6 +3,7 @@ import express, { Request, Response } from "express";
 import path from "path";
 import compression from "compression";
 import { getCurrentInvoke } from "@vendia/serverless-express";
+import { v4 as uuidv4 } from "uuid";
 
 const ejs = require("ejs").__express;
 const app = express();
@@ -25,7 +26,7 @@ router.get("/", (req: Request, res: Response) => {
   const { requestContext = {} } = event;
   const { domainName = "localhost:3000" } = requestContext;
   const apiUrl__ORIGINAL = `https://${domainName}`;
-  const apiUrl  ="fake URL";
+  const apiUrl  = uuidv4();
   return res.render("index", {
     apiUrl,
   });
