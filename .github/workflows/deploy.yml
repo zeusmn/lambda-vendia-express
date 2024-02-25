@@ -32,11 +32,9 @@ jobs:
         run: |
           npm ci
 
+      - name: set env - NODE_ENV
+        run: echo "NODE_ENV=github_actions" >> GITHUB_ENV
+
       - name: "sam build and deploy"
         run: |
-          echo "NODE_ENV=github_actions" >> GITHUB_ENV
           npm run package-deploy
-          # NODE_ENV=github_actions npm run package-deploy
-          # you can also set NODE_ENV with env directive above before running npm
-          # or append env setter into $GITHUB_ENV
-          # run echo "NODE_ENV=github_actions" >> $GITHUB_ENV
