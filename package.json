@@ -4,7 +4,7 @@
   "description": "Example application for running a Node Express app on AWS Lambda using Amazon API Gateway.",
   "main": "lambda.js",
   "config": {
-    "s3BucketName": "elasticbeanstalk-us-east-1-888955769172",
+    "s3BucketName": "vendia-express-sample-zmn",
     "region": "us-east-1",
     "cloudFormationStackName": "vendiaExpressSampleZmn",
     "functionName": "",
