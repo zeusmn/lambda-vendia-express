@@ -34,4 +34,4 @@ jobs:
 
       - name: "sam build and deploy"
         run: |
-          npm run package-deploy
+          NODE_ENV=github_actions npm run package-deploy
