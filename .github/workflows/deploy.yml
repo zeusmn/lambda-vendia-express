@@ -20,7 +20,12 @@ jobs:
           aws-access-key-id: ${{ secrets.ACCESS_KEY_ID_MWO }}
           aws-secret-access-key: ${{ secrets.SECRET_ACCESS_KEY_MWO }}
           aws-region: "us-east-1"
-      - name: try cli
+
+      - name: configure sam
+        uses: aws-actions/setup-sam@v2
+        with:
+          use-installer: true
+
+      - name: test sam
         run: |
-          echo -e "this is deploy job\n"
-          aws s3 ls
+          sam
