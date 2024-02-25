@@ -1,16 +1,15 @@
 name: "AWS Deploy workflow"
 
 on:
-  pull_request:
+  push:
     branches: [dev]
-    types: [closed]
 
 permissions:
   id-token: write
 
 jobs:
   aws:
-    if: github.event.pull_request.merged == true
+    if: true
     runs-on: ubuntu-latest
 
     steps:
@@ -35,4 +34,4 @@ jobs:
 
       - name: "sam build and deploy"
         run: |
-          npm run package:deploy
+          npm run package-deploy
