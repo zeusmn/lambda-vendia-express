@@ -26,6 +26,10 @@ jobs:
         with:
           use-installer: true
 
-      - name: test sam
+      - name: install deps
         run: |
-          sam
+          npm run install
+
+      - name: "sam build and deploy"
+        run: |
+          npm run package:deploy
