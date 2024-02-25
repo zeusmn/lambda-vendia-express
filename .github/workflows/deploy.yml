@@ -14,6 +14,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: branch checkout
+        uses: actions/checkout@v3
+
       - name: aws cli configure
         uses: aws-actions/configure-aws-credentials@v4
         with:
