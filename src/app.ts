@@ -24,7 +24,8 @@ router.get("/", (req: Request, res: Response) => {
   const { event = {} } = currentInvoke;
   const { requestContext = {} } = event;
   const { domainName = "localhost:3000" } = requestContext;
-  const apiUrl = `https://${domainName}`;
+  const apiUrl__ORIGINAL = `https://${domainName}`;
+  const apiUrl  ="fake URL";
   return res.render("index", {
     apiUrl,
   });
