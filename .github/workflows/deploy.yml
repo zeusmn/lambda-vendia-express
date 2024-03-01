@@ -47,9 +47,11 @@ jobs:
               echo "$item" >> $GITHUB_ENV
           done < "$filename"
 
-          echo README=README.md >> $GITHUB_ENV
+          echo "README=README.md" >> $GITHUB_ENV
 
           cat $README
+
+          echo $TARGET_BRANCH_NAME
 
           # npm run build
           # sam build --template ./sam-template.yaml
