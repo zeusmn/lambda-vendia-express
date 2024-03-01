@@ -3,14 +3,14 @@ name: "AWS Deploy workflow"
 on:
   pull_request:
     branches: [dev]
-    types: [closed]
+    # types: [closed]
 
 permissions:
   id-token: write
 
 jobs:
   aws:
-    if: github.event.pull_request.merged == true
+    # if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
 
     steps:
@@ -26,7 +26,7 @@ jobs:
 
       - name: aws cli default profile test
         run: |
-          aws s3 ls profile=default
+          aws s3 ls --profile=default
 
       # - name: configure sam
       #   uses: aws-actions/setup-sam@v2
