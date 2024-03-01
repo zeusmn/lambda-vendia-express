@@ -2,8 +2,7 @@ name: "AWS Deploy workflow"
 
 on:
   pull_request:
-    branches: [dev]
-    # types: [closed]
+    branches: [dev, staging]
 
 permissions:
   id-token: write
@@ -24,19 +23,27 @@ jobs:
           aws-secret-access-key: ${{ secrets.SECRET_ACCESS_KEY_MWO }}
           aws-region: "us-east-1"
 
-      - name: aws cli default profile test
+      - name: configure sam
+        uses: aws-actions/setup-sam@v2
+        with:
+          use-installer: true
+
+      - name: clean install deps
         run: |
-          aws s3 ls --profile=default
-
-      # - name: configure sam
-      #   uses: aws-actions/setup-sam@v2
-      #   with:
-      #     use-installer: true
-
-      # - name: clean install deps
-      #   run: |
-      #     npm ci
+          npm ci
 
       # - name: "sam build and deploy"
       #   run: |
       #     NODE_ENV=github_actions npm run package-deploy
+
+      - name: "sam build and deploy - NEW"
+        run: |
+          filename="sam-configs/$(github.base_ref)"
+          while IFS= read -r item; do
+              echo "$item"
+              echo "$item" >> $GITHUB_ENV
+          done < "$filename"
+
+          npm run build
+          sam build --template ./sam-template.yaml
+          sam deploy --stack-name $CLOUDFORMATION_STACK_NAME --capabilities CAPABILITY_IAM --s3-bucket $S3_BUCKET_NAME --s3-prefix minwo --region $REGION --no-fail-on-empty-changeset

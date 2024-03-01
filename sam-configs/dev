@@ -1,0 +1,5 @@
+S3_BUCKET_NAME=vendia-express-sample-zmn
+REGION=us-east-1
+CLOUDFORMATION_STACK_NAME=vendiaExpressSampleZmn
+FUNCTION_NAME=vendiaExpressSampleZmn-ExpressLambdaFunction-RbTgXxgbFihp
+PROFILE=minwo
