@@ -47,7 +47,9 @@ jobs:
               echo "$item" >> $GITHUB_ENV
           done < "$filename"
 
-          echo S3_BUCKET:$S3_BUCKET
+          echo S3_BUCKETTT=dummy-value >> $GITHUB_ENV
+
+          echo S3_BUCKETTT:$S3_BUCKETTT
 
           # npm run build
           # sam build --template ./sam-template.yaml
