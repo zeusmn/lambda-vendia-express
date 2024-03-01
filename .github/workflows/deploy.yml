@@ -41,7 +41,6 @@ jobs:
 
       - name: "sam build and deploy - NEW"
         run: |
-          github
           filename="sam-configs/$TARGET_BRANCH_NAME"
           while IFS= read -r item; do
               echo "$item"
