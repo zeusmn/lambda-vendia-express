@@ -24,15 +24,19 @@ jobs:
           aws-secret-access-key: ${{ secrets.SECRET_ACCESS_KEY_MWO }}
           aws-region: "us-east-1"
 
-      - name: configure sam
-        uses: aws-actions/setup-sam@v2
-        with:
-          use-installer: true
-
-      - name: clean install deps
+      - name: aws cli default profile test
         run: |
-          npm ci
+          aws s3 ls profile=default
 
-      - name: "sam build and deploy"
-        run: |
-          NODE_ENV=github_actions npm run package-deploy
+      # - name: configure sam
+      #   uses: aws-actions/setup-sam@v2
+      #   with:
+      #     use-installer: true
+
+      # - name: clean install deps
+      #   run: |
+      #     npm ci
+
+      # - name: "sam build and deploy"
+      #   run: |
+      #     NODE_ENV=github_actions npm run package-deploy
