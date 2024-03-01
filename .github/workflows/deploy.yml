@@ -47,11 +47,9 @@ jobs:
               echo "$item" >> $GITHUB_ENV
           done < "$filename"
 
-          echo "README=README.md" >> $GITHUB_ENV
-
       - name: "sam build and deploy - NEW"
         run: |
-          cat $README
+          cat $S3_BUCKET
 
           # npm run build
           # sam build --template ./sam-template.yaml
