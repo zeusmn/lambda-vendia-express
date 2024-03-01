@@ -1,0 +1,6 @@
+S3_BUCKET=vendia-express-sample-zmn
+S3_PREFIX=vendia-express-sample-zmn
+AWS_REGION=us-east-1
+CFN_STACK_NAME=vendiaExpressSampleZmn
+FUNCTION_NAME=vendiaExpressSampleZmn-ExpressLambdaFunction-RbTgXxgbFihp
+PROFILE=minwo
