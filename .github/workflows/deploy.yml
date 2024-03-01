@@ -3,14 +3,14 @@ name: "AWS Deploy workflow"
 on:
   pull_request:
     branches: [dev]
-    # types: [closed]
+    types: [closed]
 
 permissions:
   id-token: write
 
 jobs:
   aws:
-    # if: github.event.pull_request.merged == true
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     env:
       TARGET_BRANCH_NAME: ${{ github.base_ref }}
@@ -35,10 +35,6 @@ jobs:
         run: |
           npm ci
 
-      # - name: "sam build and deploy"
-      #   run: |
-      #     NODE_ENV=github_actions npm run package-deploy
-
       - name: "set env vars"
         run: |
           filename="sam-configs/$TARGET_BRANCH_NAME"
@@ -47,9 +43,10 @@ jobs:
               echo "$item" >> $GITHUB_ENV
           done < "$filename"
 
-      - name: "sam build and deploy - NEW"
+      - name: "sam build and deploy"
         run: |
+          # NODE_ENV=github_actions npm run package-deploy # ditching npm
+
           npm run build
           sam build --template ./sam-template.yaml
-          # aws s3api get-bucket-location --bucket $S3_BUCKET
           sam deploy --stack-name $CFN_STACK_NAME --capabilities CAPABILITY_IAM --s3-bucket $S3_BUCKET --region $AWS_REGION
