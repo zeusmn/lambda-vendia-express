@@ -31,9 +31,9 @@ jobs:
         with:
           use-installer: true
 
-      # - name: clean install deps
-      #   run: |
-      #     npm ci
+      - name: clean install deps
+        run: |
+          npm ci
 
       # - name: "sam build and deploy"
       #   run: |
