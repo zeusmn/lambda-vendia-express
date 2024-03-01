@@ -39,7 +39,7 @@ jobs:
       #   run: |
       #     NODE_ENV=github_actions npm run package-deploy
 
-      - name: "set envs"
+      - name: "set env vars"
         run: |
           filename="sam-configs/$TARGET_BRANCH_NAME"
           while IFS= read -r item; do
