@@ -39,7 +39,7 @@ jobs:
       #   run: |
       #     NODE_ENV=github_actions npm run package-deploy
 
-      - name: "sam build and deploy - NEW"
+      - name: "set envs"
         run: |
           filename="sam-configs/$TARGET_BRANCH_NAME"
           while IFS= read -r item; do
@@ -49,9 +49,9 @@ jobs:
 
           echo "README=README.md" >> $GITHUB_ENV
 
+      - name: "sam build and deploy - NEW"
+        run: |
           cat $README
-
-          echo $TARGET_BRANCH_NAME
 
           # npm run build
           # sam build --template ./sam-template.yaml
