@@ -13,7 +13,7 @@ jobs:
     # if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     env:
-      TARGET_BRANCH_NAME: github.base_ref
+      TARGET_BRANCH_NAME: ${{ github.base_ref }}
 
     steps:
       - name: branch checkout
@@ -41,6 +41,7 @@ jobs:
 
       - name: "sam build and deploy - NEW"
         run: |
+          github
           filename="sam-configs/$TARGET_BRANCH_NAME"
           while IFS= read -r item; do
               echo "$item"
